@@ -20,10 +20,9 @@ export class DetailPokemonComponent implements OnInit {
  // des dépendances
  // snapshot pour dire que recuperer le param d'une maniere  synchrone
     const id = +this.route.snapshot.paramMap?.get('id')!;
+    this.PokemonToDisplay = this.pokemonsservice.getSinglePokemon(id);
 
-    if (this.pokemonsservice.IsPokemonFound(id)) {
-      this.PokemonToDisplay = this.pokemonsservice.getSinglePokemon(id);
-    }
+
 
   }
 
