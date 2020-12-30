@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {POKEMONS} from '../../shared/list.pokemons';
 import { Router,ActivatedRoute} from '@angular/router';
 import { Pokemon } from '../../pokemon';
+import {PokemonsService}  from '../pokemons.service';
+
 @Component({
   selector: 'app-detail-pokemon',
   templateUrl: './detail-pokemon.component.html',
@@ -11,26 +12,28 @@ export class DetailPokemonComponent implements OnInit {
   listOfPokemons : Pokemon[] =[] ;
   PokemonToDisplay : Pokemon = {} ;
 
-  constructor(private route: ActivatedRoute , private router: Router) { }
+
+  constructor(private route: ActivatedRoute , private router: Router , private pokemonsservice: PokemonsService) { }
 
   ngOnInit(): void {
-    this.listOfPokemons = POKEMONS ;
+    this.listOfPokemons = this.pokemonsservice.getListPokemons();
  // Récuperer le param de la route associé à mon composant avec l'injection
  // des dépendances
  // snapshot pour dire que recuperer le param d'une maniere  synchrone
     const id = +this.route.snapshot.paramMap?.get('id')!;
-    for (let i = 0; i< this.listOfPokemons.length; i++){
+    this.PokemonToDisplay = this.pokemonsservice.getSinglePokemon(id);
 
-       if(this.listOfPokemons[i].id == id){
-           this.PokemonToDisplay = this.listOfPokemons[i];
-       }
 
-    }
 
   }
 
    back(): void {
       this.router.navigate(['/pokemon'])
+    }
+    editerPokemon(pokemonToEdit: Pokemon):void {
+      const link = ['pokemon/edit', pokemonToEdit.id];
+      this.router.navigate(link);
+
     }
 
 }
