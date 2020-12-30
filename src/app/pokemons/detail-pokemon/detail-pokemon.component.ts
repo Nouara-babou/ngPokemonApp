@@ -30,7 +30,11 @@ export class DetailPokemonComponent implements OnInit {
    back(): void {
       this.router.navigate(['/pokemon'])
     }
+    /* la methode passée au boutton  éditer, lorsque
+    l’utilisateur cliquera dessus, on sera redirigé vers une page contenant un formulaire
+    pour éditer le Pokémon sélectionné */
     editerPokemon(pokemonToEdit: Pokemon):void {
+    // on cree une route ou editer le pokemon (ou ya le formulaire) donc ici juste la redirection
       const link = ['pokemon/edit', pokemonToEdit.id];
       this.router.navigate(link);
 

@@ -4,6 +4,8 @@
 <!-- ngSubmit : permet de lier l'évènement de validation du formulaire à la méthode onSubmit définit dans le composant -->
 <!-- ngIf: permet de s'assurer qu'un pokemon a bien été transmis au composant du formulaire,
     Dans le cas contraire, on affiche un msg d'erreur.
+     Les modifications sont faites juste dans le model car ya pas de persistance avec les bases de données
+
 -->
 <form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
   <div class="row">
@@ -65,11 +67,12 @@
                   <div class="{{ type | pokemonTypeColor }}">
                   {{ type }}
                   </div>
-                </span>
+              </span>
             </label>
           </p>
         </form>
-
+        <!-- le button sera desactivé tant qu 'on a pas ce qu'on spécifié
+          ici tant que le formulaire n'est pas valide -->
         <!-- Submit button -->
         <div class="divider"></div>
         <div class="section center">

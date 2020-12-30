@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Pokemon } from 'src/app/pokemon';
 import { PokemonsService } from '../pokemons.service';
 @Component({
+/*La selectorvaleur "app-pokemon-form" du composant signifie que vous pouvez déposer
+ce formulaire dans un modèle parent à l'aide de la <app-pokemon-form>balise*/
   selector: 'app-pokemon-form',
   templateUrl: './pokemon-form.component.html',
   styleUrls: ['./pokemon-form.component.scss']
@@ -11,7 +13,9 @@ export class PokemonFormComponent implements OnInit {
 
   constructor(private router: Router, private pokemonService: PokemonsService) { }
   types: Array<string> = [];
-  @Input() pokemon: Pokemon = {}; // propriété d'entrée du composant
+  @Input() pokemon: Pokemon = {}; // propriété d'entrée du composant pour dire que ce composant n'a pas
+  // de sens sans un pokemon en entree à la place de composant on peut avoir un modele ou on définit la méthode
+  // onSubmit()
   ngOnInit(): void {
     this.types = this.pokemonService.getPokemonTypes();
   }
@@ -23,6 +27,7 @@ export class PokemonFormComponent implements OnInit {
   }
 
   selectType($event: any, type: string): void{
+  //	Une référence à l'objet sur lequel l'événement s'est produit à l'origine
     const checked = $event.target.checked;
     if (checked){
       // @ts-ignore

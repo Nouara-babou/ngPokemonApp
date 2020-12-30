@@ -2,5 +2,18 @@
 <p class="center">
   <img  *ngIf="singlePokemon" [src]="singlePokemon.picture"/>
 </p>
+<!--
+
+{{}} pour récuperer une valeur de composont et l'afficher dans le template
+La [pokemon] liaison de propriété transmet la valeur de singlePokemon parent
+PokemonEditComponentà la heropropriété de l'enfant pokemonFormComponent.
+
+<input [(ngModel)]="pokemon.name">
+une valeur de propriété de données circule vers la zone d'entrée à partir du composant comme avec la liaison de propriété.
+Les modifications de l'utilisateur sont également renvoyées au composant,
+en réinitialisant la propriété à la dernière valeur, comme pour la liaison d'événement.
+les balises  <app-pokemon-form> pour deposer le formulaire et donc on a a dit que ce composant n'a pas de sens
+si on lui donne pas un pokemon donc c est la raison pour laquelle on a ajouté
+-->
 <app-pokemon-form [pokemon]="singlePokemon"></app-pokemon-form>
 
